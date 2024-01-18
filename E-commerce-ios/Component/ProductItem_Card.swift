@@ -12,40 +12,42 @@ struct ProductItem_Card:View  {
     let product:Product
     
     
+    
     var body: some View{
         VStack{
+           
             VStack( spacing: 0) {
                 renderAsyncImage(url: product.image)
-                Spacer()
-                    .frame(minHeight: 10, maxHeight: 10)
-                productName_container(brand: product.brand, name: product.name)
-                
-                Spacer()
-                
-                price_container(currency: product.price.currency, discountValue:product.discountPrice.value, price:product.price.value)
-                Spacer()
-                    .frame(minHeight: 10, maxHeight: 10)
-                Button{
-                    print("\(product.id) is clicked")
-                } label: {
-                    Text("即買")
-                        .foregroundColor(.black)
-                        .font(.system(size: 12))
-                        .frame(maxWidth: .infinity, minHeight: 25)
-                        .background(.yellow)
-                        .cornerRadius(15)
-                }
-                
-            }.padding(5)
+                    Spacer()
+                        .frame(minHeight: 10, maxHeight: 10)
+                    productName_container(brand: product.brand, name: product.name)
+                    
+                    Spacer()
+                    
+                    price_container(currency: product.price.currency, discountValue:product.discountPrice.value, price:product.price.value)
+                    Spacer()
+                        .frame(minHeight: 10, maxHeight: 10)
+                    NavigationLink(destination:ProductDetailView()){
+                        Text("即買")
+                            .foregroundColor(.black)
+                            .font(.system(size: 12))
+                            .frame(maxWidth: .infinity, minHeight: 25)
+                            .background(.yellow)
+                            .cornerRadius(15)
+                        
+                        
+                        
+                    }.padding(5)}
+            }
             
-        } .frame(width: 150.0, height: 250.0)
-            .background(Color.white)
-        
+                .background(Color.white)
+            
         
     }
     
     func renderAsyncImage(url: String) -> some View {
-        return AsyncImage(url: URL(string:url )) { phase in
+        return
+        AsyncImage(url: URL(string:url )) { phase in
             switch phase {
             case .empty:
                 ProgressView()
@@ -60,7 +62,7 @@ struct ProductItem_Card:View  {
             @unknown default:
                 EmptyView()
             }
-        }
+        }.frame(maxWidth: .infinity,maxHeight: .infinity)
     }
     
     func productName_container(brand:String,name:String) -> some View{
