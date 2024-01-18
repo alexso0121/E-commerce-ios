@@ -24,6 +24,7 @@
 		D850655F2B58370D0097CFCE /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850655E2B58370D0097CFCE /* ProductDetailView.swift */; };
 		D85065612B5976D50097CFCE /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85065602B5976D50097CFCE /* Header.swift */; };
 		D85065632B5989FD0097CFCE /* Cart_Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85065622B5989FD0097CFCE /* Cart_Badge.swift */; };
+		D85065652B5990C40097CFCE /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85065642B5990C40097CFCE /* LoadImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		D850655E2B58370D0097CFCE /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		D85065602B5976D50097CFCE /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		D85065622B5989FD0097CFCE /* Cart_Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart_Badge.swift; sourceTree = "<group>"; };
+		D85065642B5990C40097CFCE /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				D806A4022B55BCD0004C0F53 /* ProductItem_Card.swift */,
 				D85065602B5976D50097CFCE /* Header.swift */,
 				D85065622B5989FD0097CFCE /* Cart_Badge.swift */,
+				D85065642B5990C40097CFCE /* LoadImage.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				D85065612B5976D50097CFCE /* Header.swift in Sources */,
 				D83371952B5516320024276E /* E_commerce_iosApp.swift in Sources */,
 				D85065632B5989FD0097CFCE /* Cart_Badge.swift in Sources */,
+				D85065652B5990C40097CFCE /* LoadImage.swift in Sources */,
 				D806A40B2B56B91A004C0F53 /* ApiModel.swift in Sources */,
 				D806A3FC2B5562F2004C0F53 /* ApiManager.swift in Sources */,
 				D806A4002B557BD0004C0F53 /* HomeView.swift in Sources */,

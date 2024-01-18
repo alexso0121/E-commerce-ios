@@ -17,7 +17,7 @@ struct ProductItem_Card:View  {
         VStack{
            
             VStack( spacing: 0) {
-                renderAsyncImage(url: product.image)
+                LoadImage(url: product.image)
                     Spacer()
                         .frame(minHeight: 10, maxHeight: 10)
                     productName_container(brand: product.brand, name: product.name)
@@ -27,7 +27,7 @@ struct ProductItem_Card:View  {
                     price_container(currency: product.price.currency, discountValue:product.discountPrice.value, price:product.price.value)
                     Spacer()
                         .frame(minHeight: 10, maxHeight: 10)
-                    NavigationLink(destination:ProductDetailView()){
+                    NavigationLink(destination:ProductDetailView(product: product)){
                         Text("即買")
                             .foregroundColor(.black)
                             .font(.system(size: 12))
@@ -45,25 +45,7 @@ struct ProductItem_Card:View  {
         
     }
     
-    func renderAsyncImage(url: String) -> some View {
-        return
-        AsyncImage(url: URL(string:url )) { phase in
-            switch phase {
-            case .empty:
-                ProgressView()
-            case .success(let image):
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            case .failure:
-                Image(systemName: "exclamationmark.triangle")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            @unknown default:
-                EmptyView()
-            }
-        }.frame(maxWidth: .infinity,maxHeight: .infinity)
-    }
+   
     
     func productName_container(brand:String,name:String) -> some View{
         return HStack{
