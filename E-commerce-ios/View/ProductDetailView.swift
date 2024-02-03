@@ -9,24 +9,41 @@ import Foundation
 import SwiftUI
 
 struct ProductDetailView:View{
+    @Binding var cartCount:Int
+    @EnvironmentObject var Carts:Cart_Item_ViewModel
+
+    
     let product:Product;
     let multiLineText="dfsfdfsafs\ndfsfdsfsa\nsdf"
     @State var value:Int = 1
     var body: some View{
         NavigationView(){
             VStack{
-                Header().frame(maxHeight:50)
                 ScrollView(showsIndicators: false) {
                     LoadImage(url: product.image).frame(height:400)
                     DetailInfoContainer()
                     DescriptionContainer()
                     ItemNumberBox()
+//                    Button("Update State") {
+//                                  AddToCart()
+//                               }
+                    
+                    Text("\(cartCount)")
                     VStack(alignment:.leading){
                         Spacer()
-                            .frame( height: 12)
-                        HStack{
-                            
+                            .frame( height: 16)
+                        HStack(spacing:18){
+                            RectIconButton(buttonAction: AddToCart, backgroundColor: Color.ECGreyColor, iconColor: Color.white, iconPath: "cart.fill", leftColor: Color.green, buttonText: "加入購物車", height: 45, width: 160
+                            )
+                            RectIconButton(buttonAction: nil, backgroundColor: Color.ECGreyColor, iconColor: Color.secondary, iconPath: "heart.fill", leftColor: Color.secondary, buttonText: "加入喜愛清單", height: 45, width: 160
+                            )
                         }
+//                        Button("Update State") {
+//                                      AddToCart()
+//                                   }
+
+                        Spacer()
+                            .frame( height: 16)
                     }
                     
                 }.padding(.horizontal)
@@ -36,6 +53,20 @@ struct ProductDetailView:View{
                 
             }
         }}
+    
+    private func AddToCart  () async ->Void  {
+        let cartItem:Cart_Item=Cart_Item(productId: product.id, number: value)
+//        Task{
+//           await cart_vm._updateCart(item: cartItem)
+//        }
+        
+        Carts.cart.append(cartItem)
+        await MainActor.run{
+            cartCount+=1
+            
+        }
+        print("onclick")
+    }
     
     func DetailInfoContainer()->some View{
         return VStack(alignment: .leading){
@@ -134,7 +165,7 @@ struct ProductDetailView:View{
                     value+=1
                 }
                 .frame(width:40,height:40)
-                .background(Color(hue: 1.0, saturation: 0.016, brightness: 0.937))
+                .background(Color.ECGreyColor)
                 .foregroundColor(Color.black)
                 
                 
@@ -142,14 +173,14 @@ struct ProductDetailView:View{
                    
                 }
                 .frame(width:60,height:40)
-                .background(Color(hue: 1.0, saturation: 0.016, brightness: 0.937))
+                .background(Color.ECGreyColor)
                 .foregroundColor(Color.black)
                 
                 Button("-"){
                     if(value>0) {value-=1}
                 }
                 .frame(width:40,height:40)
-                .background(Color(hue: 1.0, saturation: 0.016, brightness: 0.937))
+                .background(Color.ECGreyColor)
                 .foregroundColor(Color.black)
                 
                 Spacer()
@@ -168,8 +199,8 @@ struct ProductDetailView:View{
 }
 
 
-struct ProductDetailView_Preview:PreviewProvider{
-    static var previews: some View {
-        ProductDetailView(product: Product(id: 0, image: "https://picsum.photos/id/28/300/300", name: "Product 0", brand:  "Brand 0", price: Price_DTO(currency: "JPY", value:  363.93), discountPrice: Price_DTO(currency: "JPY", value:  363.93)))
-    }
-}
+//struct ProductDetailView_Preview:PreviewProvider{
+//    static var previews: some View {
+//        ProductDetailView(cartCount: 2, product: <#T##Product#>,product: Product(id: 0, image: "https://picsum.photos/id/28/300/300", name: "Product 0", brand:  "Brand 0", price: Price_DTO(currency: "JPY", value:  363.93), discountPrice: Price_DTO(currency: "JPY", value:  363.93)))
+//    }
+//}

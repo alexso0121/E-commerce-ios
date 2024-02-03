@@ -9,7 +9,12 @@ import Foundation
 import SwiftUI
 
 struct Header : View{
+    @Binding  var count:Int
+    
+    
+
     var body: some View{
+        
         HStack{
             HStack{
                 Image(systemName: "line.horizontal.3")                    .resizable()
@@ -22,30 +27,36 @@ struct Header : View{
                     
             }.frame(maxWidth:100, maxHeight:.infinity ).padding(8)
             Spacer()
-            Text("Alex Mall")
+            Text("\(count)")
                 .font(.system(size: 20, design: .serif))
                 .fontWeight(.bold)
                 .foregroundColor(Color(hue: 0.395, saturation: 0.968, brightness: 0.629))
             Spacer()
-            HStack(){
-                Spacer()
-                CartBadge()
+               // Action to be performed when the HStack is tapped
+            NavigationLink(destination:CartView()){
+                
+                HStack(){
+                    Spacer()
+                    CartBadge(count:3)
                     
-            }.frame(maxWidth:100,maxHeight:.infinity)
-                .padding(8)
-            
-        }.padding(2).overlay(
+                }.frame(maxWidth:100,maxHeight:.infinity)
+                    .padding(8)
+                
+            }
+        }.padding(2)
+            .overlay(
             Rectangle()
                 .frame(width: nil, height: 1, alignment: .bottom)
                 .foregroundColor(Color.gray), // Adjust the color of the border
             alignment: .bottom
         )
+        
     
     }
 }
 
 struct Header_preview:PreviewProvider{
    static var previews: some View{
-       Header().frame(height: 50)
+       Header(count: Binding.constant(3)).frame(height: 50)
     }
 }

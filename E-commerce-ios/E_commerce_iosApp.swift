@@ -12,6 +12,8 @@ struct E_commerce_iosApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(Cart_Item_ViewModel()
+                                  )
         }
     }
 }

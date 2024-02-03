@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ProductItem_Card:View  {
     let product:Product
+    @Binding var cartCount:Int
     
     
     
@@ -27,7 +28,7 @@ struct ProductItem_Card:View  {
                     price_container(currency: product.price.currency, discountValue:product.discountPrice.value, price:product.price.value)
                     Spacer()
                         .frame(minHeight: 10, maxHeight: 10)
-                    NavigationLink(destination:ProductDetailView(product: product)){
+                    NavigationLink(destination:ProductDetailView(cartCount: $cartCount,product: product)){
                         Text("即買")
                             .foregroundColor(.black)
                             .font(.system(size: 12))
@@ -87,12 +88,14 @@ struct ProductItem_Card:View  {
     
 }
 
-struct ProductItem_Card_Preview:PreviewProvider{
-    
-    static var previews: some View {
-        
-        ProductItem_Card(product: Product(id: 0, image: "https://picsum.photos/id/28/300/300", name: "Product 0", brand:  "Brand 0", price: Price_DTO(currency: "JPY", value:  363.93), discountPrice: Price_DTO(currency: "JPY", value:  363.93)))
-    }
-}
+//struct ProductItem_Card_Preview:PreviewProvider{
+//
+//    static var previews: some View {
+//
+//        ProductItem_Card(
+//            product: Product(id: 0, image: "https://picsum.photos/id/28/300/300", name: "Product 0", brand:  "Brand 0", price: Price_DTO(currency: "JPY", value:  363.93), discountPrice: Price_DTO(currency: "JPY", value:  363.93)),cartCount: nil
+//        )
+//    }
+//}
 
 

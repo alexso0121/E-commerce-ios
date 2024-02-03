@@ -14,7 +14,7 @@ struct ApiRequest{
         var result:ProductsResponse_DTO=ProductsResponse_DTO(products: [])
         do{
             result = try await apiManager.makeAPIRequest(url: "https://everuts-codetest.s3.ap-southeast-1.amazonaws.com/products_1.json")
-            print(result)
+            
         }catch{
             print("Error fetching products: \(error)")
         }

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct CartBadge:View{
-    let count=5
+    let count:Int;
     var body:some View{
         ZStack{
             Image(systemName: "cart")
@@ -31,6 +31,6 @@ struct CartBadge:View{
 
 struct CartBadge_Preview:PreviewProvider{
     static var previews: some View{
-        CartBadge()
+        CartBadge(count: 5)
     }
 }

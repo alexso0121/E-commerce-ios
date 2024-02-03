@@ -10,18 +10,17 @@ import SwiftUI
 struct HomeView: View {
     
     @ObservedObject var viewModel=Product_ViewModel()
-    
-    
+
+    @Binding var cart_num:Int
     let columns = Array(repeating: GridItem(), count: 2)
     
     var body: some View{
         VStack {
-            Header().frame(maxHeight: 50)
-            
+            Text("View 2: \(cart_num)")
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columns) {
                     ForEach(viewModel.products.indices, id: \.self){item in
-                        ProductItem_Card(product: viewModel.products[item] ).frame(width: 155.0, height: 250.0)
+                        ProductItem_Card(  product: viewModel.products[item] ,cartCount: $cart_num).frame(width: 155.0, height: 250.0)
                     }
                     
                 }
@@ -47,7 +46,7 @@ struct HomeView: View {
 
 struct HomeView_Preview:PreviewProvider{
     static var previews: some View {
-        HomeView()
+        HomeView(cart_num:Binding.constant(3))
     }
 }
 

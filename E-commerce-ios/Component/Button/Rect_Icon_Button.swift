@@ -10,7 +10,7 @@ import SwiftUI
 
 struct RectIconButton : View{
    
-    let buttonAction: (() -> Void)?
+    let buttonAction: (() async-> Void)?
     let backgroundColor:Color
     let iconColor:Color
     let iconPath:String
@@ -22,16 +22,25 @@ struct RectIconButton : View{
 
     var body: some View{
         Button(action:{
-            buttonAction?()
+            Task{
+                await buttonAction?()
+            }
             
         }){
-            HStack{
+            HStack(spacing:0){
                 HStack{
                     Image(systemName: iconPath)
-                }.frame(maxWidth:80,maxHeight:.infinity)
+                        .resizable()
+                        .frame(width:height*0.4,height:height*0.4)
+                        .foregroundColor(Color.white)
+                        
+                }.frame(maxWidth:height,maxHeight:.infinity)
                     .background(leftColor)
                 HStack{
                     Text(buttonText)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.black)
+                        
                 }.frame(maxWidth:.infinity,maxHeight:.infinity)
                     
             }
@@ -39,12 +48,13 @@ struct RectIconButton : View{
             
         }.frame(width: width,height: height)
             .background(backgroundColor)
+            .border(Color.gray,width: 1.5)
     }
 }
 
 struct RectIconButtonPreview:PreviewProvider{
     static var previews: some View{
-        RectIconButton(buttonAction: nil, backgroundColor: Color.gray, iconColor: Color.white, iconPath: "leaf", leftColor: Color.green, buttonText: "buy", height: 80, width: 200
+        RectIconButton(buttonAction: nil, backgroundColor: Color.ECGreyColor, iconColor: Color.white, iconPath: "leaf", leftColor: Color.green, buttonText: "buy", height: 50, width: 150
         )
     }
 }
