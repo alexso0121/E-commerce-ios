@@ -8,20 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var cart_vm=Cart_Item_ViewModel()
     
     var body: some View {
         
-            NavigationView {
-                VStack{
-                Header(count:$cart_vm.cart_num).frame(maxHeight: 50)
-
-                HomeView(cart_num: $cart_vm.cart_num)
-                    .environmentObject(cart_vm)
+        NavigationView {
+            TabView{
+                HomeView()
+                    .tabItem {
+                        Text("Home")
+                        Image(systemName: "house.fill")
+                    }
                 
+                CartView()
+                    .tabItem {
+                        Text("Cart")
+                        
+                    }
+                    .navigationBarTitle("Tab 2")
+                    .navigationBarHidden(false)
                 
-            }}
-    }
+            }         // Apply the default tab view style
+            
+            
+            
+            
+            
+        }}
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

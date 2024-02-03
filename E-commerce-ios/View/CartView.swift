@@ -12,7 +12,7 @@ struct CartView :View{
     @EnvironmentObject var cart_vm:Cart_Item_ViewModel
     
     var body: some View{
-        NavigationView{
+        
             VStack{
                 List(cart_vm.cart) { cart in
                     Text(String(cart.productId))
@@ -25,7 +25,7 @@ struct CartView :View{
                 }
                 .padding()
             }
-        }
+        
     }
 }
 
