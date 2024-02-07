@@ -26,6 +26,11 @@ struct ContentView: View {
                         
                     }
                     .navigationBarTitle("Tab 2")
+                ProfileView()
+                    .tabItem{
+                        Text("Profile")
+                        Image(systemName: "person")
+                    }
             }.onAppear() {
                 UITabBar.appearance().barTintColor = .black
                    }

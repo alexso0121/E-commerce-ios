@@ -33,6 +33,12 @@ class Cart_Item_ViewModel:ObservableObject{
         
     }
     
+    func _deleteCartItem(_cart:Cart_Item){
+        if let index=self.cart.firstIndex(where: {$0.id==_cart.id}){
+            self.cart.remove(at: index)
+        }
+    }
+    
     init(){
         $cart .receive(on: RunLoop.main)
             .map{

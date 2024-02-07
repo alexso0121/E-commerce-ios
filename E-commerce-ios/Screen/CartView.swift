@@ -14,11 +14,21 @@ struct CartView :View{
     var body: some View{
         
             VStack{
+                Text("Your Cart:").font(.headline)
                 List(cart_vm.cart) { cart in
                     HStack{
                         Text(cart.name)
                         Spacer()
                         Text(String(cart.number))
+                    }.contextMenu{
+                        Button(action:{
+                            cart_vm._deleteCartItem(_cart:cart )
+                        }){
+                            HStack{
+                                Text("Delete")
+                                Image(systemName: "trash")
+                            }
+                        }
                     }
                 }
                 Spacer()
@@ -28,7 +38,8 @@ struct CartView :View{
                 }
                 
                
-            }.navigationTitle("Your Cart")
+            }
+            .padding()
         
     }
 }
