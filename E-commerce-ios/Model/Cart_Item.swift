@@ -11,11 +11,15 @@ struct Cart_Item :Codable,Identifiable{
     var id:UUID
     var productId: Int
     var number:Int
+    var name:String
+    var unitPrice:Float
     
-    init(productId:Int,number:Int) {
+    init(productId:Int,number:Int,name:String,unitPrice:Float) {
         self.id=UUID()
         self.productId=productId
         self.number=number
+        self.name=name
+        self.unitPrice=unitPrice
     }
     
 }

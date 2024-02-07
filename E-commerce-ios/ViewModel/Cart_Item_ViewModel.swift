@@ -6,9 +6,14 @@
 //
 
 import Foundation
+import Combine
 
 class Cart_Item_ViewModel:ObservableObject{
     @Published var cart:[Cart_Item]=[]
+    @Published var totalPrice: Float = 0
+    
+    private var cancellableSet:Set<AnyCancellable>=[]
+
     
     func _updateCart(item:Cart_Item)   {
         var isProductExist = false
@@ -26,6 +31,24 @@ class Cart_Item_ViewModel:ObservableObject{
         }
         self.cart=updatedCart
         
+    }
+    
+    init(){
+        $cart .receive(on: RunLoop.main)
+            .map{
+                carts in
+                var total:Float=0
+                for item in carts{
+                    total+=Float(item.number)*item.unitPrice
+                }
+                return total
+            
+            }
+            .assign(to: \.totalPrice,on:self)
+            .store(in: &cancellableSet)
+            
+            
+                    
     }
     
    

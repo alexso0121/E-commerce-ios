@@ -53,7 +53,7 @@ struct ProductDetailView:View{
         }}
     
     private func AddToCart  () async ->Void  {
-        let cartItem:Cart_Item=Cart_Item(productId: product.id, number: value)
+        let cartItem:Cart_Item=Cart_Item(productId: product.id, number: value,name: product.name,unitPrice: product.discountPrice.value)
 
         Carts._updateCart(item: cartItem)
 

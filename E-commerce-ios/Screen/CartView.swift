@@ -15,16 +15,20 @@ struct CartView :View{
         
             VStack{
                 List(cart_vm.cart) { cart in
-                    Text(String(cart.productId))
+                    HStack{
+                        Text(cart.name)
+                        Spacer()
+                        Text(String(cart.number))
+                    }
                 }
-                Button("Click me") {
-                    // Action to be performed when the button is tapped
-                    
-                    let _newitem:Cart_Item=Cart_Item(productId: 1, number:1)
-                    cart_vm.cart.append(_newitem)
+                Spacer()
+                HStack{
+                    Spacer()
+                    Text("Current Price $ \(String(format:"%.2f",cart_vm.totalPrice))")
                 }
-                .padding()
-            }
+                
+               
+            }.navigationTitle("Your Cart")
         
     }
 }
