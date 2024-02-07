@@ -10,24 +10,25 @@ import SwiftUI
 struct HomeView: View {
     
     @ObservedObject var viewModel=Product_ViewModel()
-//    @Binding var Cart_vm:Cart_Item_ViewModel
-    @StateObject var cart_vm=Cart_Item_ViewModel()
+    @EnvironmentObject var cart_vm:Cart_Item_ViewModel
 
-//    @Binding var cart_num:Int
     let columns = Array(repeating: GridItem(), count: 2)
     
     var body: some View{
-        VStack{
-
-                Header(count:$cart_vm.cart_num).frame(maxHeight: 50)
-
-            ScrollView(showsIndicators: false) {
+        
+        
+        
+        ScrollView(showsIndicators: false) {
+            VStack{
+                Header(count:cart_vm.cart.count).frame(maxHeight: 50)
+                
                 LazyVGrid(columns: columns) {
                     ForEach(viewModel.products.indices, id: \.self){item in
-                        ProductItem_Card(  product: viewModel.products[item] ,cartCount: $cart_vm.cart_num).frame(width: 155.0, height: 250.0)
+                        ProductItem_Card(  product: viewModel.products[item] ).frame(width: 155.0, height: 250.0)
                     }
                     
                 }
+                
             }
             
             .onAppear(){
@@ -37,14 +38,14 @@ struct HomeView: View {
                         await viewModel._getAllProduct()
                     }
                 }
-            }
+                
+                
+                
+            }.environmentObject(cart_vm)
             
-            
-        }.environmentObject(cart_vm)
+        }
         
-    }
-    
-}
+    }}
     
     
     

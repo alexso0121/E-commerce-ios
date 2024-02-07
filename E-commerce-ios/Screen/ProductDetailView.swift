@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 struct ProductDetailView:View{
-    @Binding var cartCount:Int
     @EnvironmentObject var Carts:Cart_Item_ViewModel
 
     
@@ -28,7 +27,6 @@ struct ProductDetailView:View{
 //                                  AddToCart()
 //                               }
                     
-                    Text("\(cartCount)")
                     VStack(alignment:.leading){
                         Spacer()
                             .frame( height: 16)
@@ -56,15 +54,9 @@ struct ProductDetailView:View{
     
     private func AddToCart  () async ->Void  {
         let cartItem:Cart_Item=Cart_Item(productId: product.id, number: value)
-//        Task{
-//           await cart_vm._updateCart(item: cartItem)
-//        }
-        
-        Carts.cart.append(cartItem)
-        await MainActor.run{
-            cartCount+=1
-            
-        }
+
+        Carts._updateCart(item: cartItem)
+
         print("onclick")
     }
     

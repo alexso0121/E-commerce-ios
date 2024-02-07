@@ -126,7 +126,7 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		D806A3ED2B552BC3004C0F53 /* View */ = {
+		D806A3ED2B552BC3004C0F53 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
 				D83371962B5516320024276E /* ContentView.swift */,
@@ -134,7 +134,7 @@
 				D850655E2B58370D0097CFCE /* ProductDetailView.swift */,
 				D8BFD52E2B6D3D1400B64812 /* CartView.swift */,
 			);
-			path = View;
+			path = Screen;
 			sourceTree = "<group>";
 		};
 		D806A3EE2B552BDD004C0F53 /* Api */ = {
@@ -203,12 +203,13 @@
 				D806A4012B55BC9C004C0F53 /* Component */,
 				D806A3EF2B552BF8004C0F53 /* Resources */,
 				D806A3EE2B552BDD004C0F53 /* Api */,
-				D806A3ED2B552BC3004C0F53 /* View */,
+				D806A3ED2B552BC3004C0F53 /* Screen */,
 				D806A3EC2B552BAF004C0F53 /* ViewModel */,
 				D806A3EB2B552B97004C0F53 /* Model */,
 				D806A3F42B552ED2004C0F53 /* DTO */,
 				D89130462B5CE56400966834 /* Extension */,
 				D83371942B5516320024276E /* E_commerce_iosApp.swift */,
+				D85F07F32B70B5D5000236CE /* New Group */,
 				D833719A2B5516330024276E /* E_commerce_ios.entitlements */,
 			);
 			path = "E-commerce-ios";
@@ -229,6 +230,13 @@
 				D83371B22B5516340024276E /* E_commerce_iosUITestsLaunchTests.swift */,
 			);
 			path = "E-commerce-iosUITests";
+			sourceTree = "<group>";
+		};
+		D85F07F32B70B5D5000236CE /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		D89130432B5C36DE00966834 /* Button */ = {

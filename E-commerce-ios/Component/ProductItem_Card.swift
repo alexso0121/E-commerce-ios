@@ -10,8 +10,6 @@ import SwiftUI
 
 struct ProductItem_Card:View  {
     let product:Product
-    @Binding var cartCount:Int
-    
     
     
     var body: some View{
@@ -28,7 +26,7 @@ struct ProductItem_Card:View  {
                     price_container(currency: product.price.currency, discountValue:product.discountPrice.value, price:product.price.value)
                     Spacer()
                         .frame(minHeight: 10, maxHeight: 10)
-                    NavigationLink(destination:ProductDetailView(cartCount: $cartCount,product: product)){
+                    NavigationLink(destination:ProductDetailView(product: product)){
                         Text("即買")
                             .foregroundColor(.black)
                             .font(.system(size: 12))
@@ -48,7 +46,7 @@ struct ProductItem_Card:View  {
     
    
     
-    func productName_container(brand:String,name:String) -> some View{
+    private func productName_container(brand:String,name:String) -> some View{
         return HStack{
             VStack(alignment: .leading, spacing: 0) {
                 Text(product.brand)
@@ -66,7 +64,7 @@ struct ProductItem_Card:View  {
         }
     }
     
-    func price_container(currency:String,discountValue:Float,price:Float)->some View{
+    private func price_container(currency:String,discountValue:Float,price:Float)->some View{
         return HStack {
             Text("\(currency)  \(String(format:"%.2f",price)) ")
                 .font(.system(size: 15))
@@ -97,5 +95,4 @@ struct ProductItem_Card:View  {
 //        )
 //    }
 //}
-
 

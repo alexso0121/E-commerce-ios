@@ -22,17 +22,14 @@ struct ContentView: View {
                 CartView()
                     .tabItem {
                         Text("Cart")
+                        Image(systemName: "cart")
                         
                     }
                     .navigationBarTitle("Tab 2")
-                    .navigationBarHidden(false)
-                
-            }         // Apply the default tab view style
-            
-            
-            
-            
-            
+            }.onAppear() {
+                UITabBar.appearance().barTintColor = .black
+                   }
+
         }}
     
 }

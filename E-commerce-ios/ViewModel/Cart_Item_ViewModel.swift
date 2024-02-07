@@ -9,9 +9,8 @@ import Foundation
 
 class Cart_Item_ViewModel:ObservableObject{
     @Published var cart:[Cart_Item]=[]
-    @Published var cart_num=0
     
-    func _updateCart(item:Cart_Item) async  {
+    func _updateCart(item:Cart_Item)   {
         var isProductExist = false
         var updatedCart = cart.map { _item in
             var updatedItem = _item
@@ -25,10 +24,9 @@ class Cart_Item_ViewModel:ObservableObject{
         if !isProductExist {
             updatedCart.append(item)
         }
+        self.cart=updatedCart
         
-//       await MainActor.run{
-//            self.cart_num=updatedCart.count
-//            self.cart=updatedCart
-//        }
     }
+    
+   
 }
